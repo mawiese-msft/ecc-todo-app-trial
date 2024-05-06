@@ -9,6 +9,14 @@ print("X - Exit")
 print("P - Print to-do list")
 print("S - Sort to-do list in alphabetical order")
 
+#Load the to-do list from file before moving on. 
+try:
+    with open("todo_list.txt", "r") as file:
+        for line in file:
+            todo_list.append(line.strip())
+except FileNotFoundError:
+    pass
+
 #continue to loop and display menu until user selects to exit the program
 while True:
     
@@ -46,6 +54,12 @@ while True:
 
     #user selected 'x' or 'X' to exit program
     if choice == "X":
+        # Save the to-do list to a file
+        #**********THIS CODE ****************
+        with open("todo_list.txt", "w") as file:
+            for todo in todo_list:
+                file.write(f"{todo}\n")
+        #************************************
         break #tells the program to exit the loop
 
     #user selected something else
