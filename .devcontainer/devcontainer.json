@@ -1,15 +1,14 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "postCreateCommand": "python3 -m pip install -r Application/requirements.txt",
+  "postCreateCommand": "python3 -m pip install -r requirements.txt",
   "customizations": {
     "codespaces": {
-      "openFiles": ["Application/README.md"]
+      "openFiles": ["README.md"]
     },
     "vscode": {
       "extensions": [
         "ms-toolsai.jupyter",
-        "ms-python.python",
-        "github.copilot"
+        "ms-python.python"
       ]
     }
   }
