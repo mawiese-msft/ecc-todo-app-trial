@@ -7,7 +7,6 @@ print("A - Add to-do item")
 print("R - Remove to-do item")     #<--- ***HERE***
 print("X - Exit")
 print("P - Print to-do list")
-print("S - Sort to-do list in alphabetical order")
 
 #Load the to-do list from file before moving on. 
 try:
@@ -46,11 +45,6 @@ while True:
         print()
         continue
 
-    if choice == "S":
-        todo_list.sort()
-        print()
-        print("To-do list is now sorted") 
-        continue
 
     #user selected 'x' or 'X' to exit program
     if choice == "X":
