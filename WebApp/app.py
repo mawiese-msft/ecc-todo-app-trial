@@ -38,6 +38,12 @@ def remove_todo():
         save_todo_list()
     return redirect(url_for("index"))
 
+@app.route("/sort", methods=["POST"])
+def sort_todo_list():
+    todo_list.sort()
+    save_todo_list()
+    return redirect(url_for("index"))   
+
 
 #Save to file method
 def save_todo_list():
