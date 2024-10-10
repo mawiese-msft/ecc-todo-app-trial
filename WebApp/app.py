@@ -5,29 +5,30 @@ app = Flask(__name__)
 
 todo_list = []
 
-basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) #My txt file is not in the same directory thus i needed to add an extra "dirname"
-todo_file = os.path.join(basedir, 'todo_list.txt')
+#basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) #My txt file is not in the same directory thus i needed to add an extra "dirname"
+#todo_file = os.path.join(basedir, 'todo_list.txt')
 
 #Load the to-do list from file before moving on. 
-try:
-    with open(todo_file, "r") as file:
-        for line in file:
-            todo_list.append(line.strip())
-except FileNotFoundError:
-    pass
+#try:
+#    with open(todo_file, "r") as file:
+#        for line in file:
+#            todo_list.append(line.strip())
+#except FileNotFoundError:
+#    pass
 
 #Http endpoints
 @app.route("/")
 def index():
-    with open(todo_file, "r") as file:
-        todo_list = file.read().splitlines()
+ #   with open(todo_file, "r") as file:
+  #      todo_list = file.read().splitlines()
     return render_template("index.html", todo_list=todo_list)
 
 @app.route("/add", methods=["POST"])
 def add_todo():
     todo = request.form["todo"]
-    todo_list.append(todo)
-    save_todo_list()
+    if len(todo_list) < 5:
+        todo_list.append(todo)
+   # save_todo_list()
     return redirect(url_for("index"))
 
 @app.route("/remove", methods=["POST"])
@@ -35,13 +36,13 @@ def remove_todo():
     item_number = int(request.form["item_number"])
     if 0 < item_number <= len(todo_list):
         todo_list.pop(item_number - 1)
-        save_todo_list()
+        #save_todo_list()
     return redirect(url_for("index"))
 
 @app.route("/sort", methods=["POST"])
 def sort_todo_list():
     todo_list.sort()
-    save_todo_list()
+    #save_todo_list()
     return redirect(url_for("index"))   
 
 
